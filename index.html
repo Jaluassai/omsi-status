@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status serwera OMSI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🟢 Status serwera OMSI</h1>
+            <p class="subtitle">Aktualne informacje o serwerze</p>
+        </header>
+
+        <main class="cards">
+            <div class="card" id="status-card">
+                <div class="card-header">
+                    <span class="icon">📡</span>
+                    <h2>Status</h2>
+                </div>
+                <p class="value" id="server-status">Sprawdzanie...</p>
+                <p class="meta" id="response-time"></p>
+            </div>
+
+            <div class="card" id="players-card">
+                <div class="card-header">
+                    <span class="icon">👥</span>
+                    <h2>Liczba graczy</h2>
+                </div>
+                <p class="value" id="player-count">Sprawdzanie...</p>
+                <p class="meta">Dane</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ostatnia aktualizacja: <span id="last-updated">-</span></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
