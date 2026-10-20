@@ -4,7 +4,10 @@ export async function onRequestGet(context) {
   const raw = await env.STATUS_KV.get('server_state');
 
   if (!raw) {
-    return new Response(JSON.stringify({ status: 'unknown', message: 'Brak danych — serwer jeszcze nie raportował.' }), {
+    return new Response(JSON.stringify({
+      status: 'unknown',
+      message: 'Brak danych — serwer jeszcze nie raportował.',
+    }), {
       headers: { 'Content-Type': 'application/json' },
     });
   }
@@ -13,7 +16,7 @@ export async function onRequestGet(context) {
 
   return new Response(JSON.stringify({
     status: 'ok',
-    ip: data.ip,
+    url: data.url,
     players: data.players,
     timestamp: data.timestamp,
     updated_at: data.updated_at,
