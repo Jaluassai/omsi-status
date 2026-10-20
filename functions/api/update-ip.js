@@ -1,7 +1,7 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // 1. Weryfikacja tokenu (nagłówek Authorization)
+  // 1. Weryfikacja tokenu
   const authHeader = request.headers.get('Authorization');
   if (!authHeader || authHeader !== `Bearer ${env.WEBHOOK_SECRET}`) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -20,17 +20,18 @@ export async function onRequestPost(context) {
     });
   }
 
-  const { ip, players, timestamp } = body;
+  const { url, players, timestamp } = body;
 
-  if (!ip || typeof ip !== 'string' || ip.trim() === '') {
-    return new Response(JSON.stringify({ error: 'Missing or invalid "ip"' }), {
+  // Walidacja: musi być poprawnym adresem trycloudflare.com
+  if (typeof url !== 'string' || !/^https:\/\/[a-z0-9-]+\.trycloudflare\.com\/?$/.test(url.trim())) {
+    return new Response(JSON.stringify({ error: 'Missing or invalid "url"' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
   const record = {
-    ip: ip.trim(),
+    url: url.trim().replace(/\/$/, ''), // usuń końcowy ukośnik
     players: typeof players === 'number' ? players : null,
     timestamp: timestamp || new Date().toISOString(),
     updated_at: new Date().toISOString(),
