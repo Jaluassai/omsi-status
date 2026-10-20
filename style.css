@@ -96,6 +96,69 @@ h1 {
     margin-top: 0.4rem;
 }
 
+.meta strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Karta adresu serwera */
+.address-card {
+    margin-top: 1rem;
+}
+
+.address-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+    margin-top: 0.25rem;
+}
+
+.address {
+    flex: 1;
+    min-width: 0;
+    font-family: ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+    font-size: 0.9rem;
+    background: #0b1220;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    color: var(--accent);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: all;
+}
+
+.copy-btn {
+    flex-shrink: 0;
+    background: var(--accent);
+    color: #0b1220;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+}
+
+.copy-btn:hover {
+    background: #7dd3fc;
+}
+
+.copy-btn:active {
+    transform: scale(0.97);
+}
+
+.copy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.copy-btn.copied {
+    background: var(--green);
+}
+
 footer {
     text-align: center;
     margin-top: 2rem;
@@ -111,4 +174,6 @@ footer .note {
 
 @media (max-width: 520px) {
     .cards { grid-template-columns: 1fr; }
+    .address-row { flex-direction: column; }
+    .copy-btn { width: 100%; }
 }
